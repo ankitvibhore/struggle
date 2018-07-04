@@ -20,10 +20,13 @@ public class Description implements Serializable {
 	private static final long serialVersionUID = -5679790778689509335L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="description_id")
 	private int descriptionId;
 	private String value;
+	@ManyToOne
+	@JoinColumn(name="cve_id")
 	private CveData cveData;
-	@Column(name="description_id")
+	
 	public int getDescriptionId() {
 		return descriptionId;
 	}
@@ -37,8 +40,7 @@ public class Description implements Serializable {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	@ManyToOne
-	@JoinColumn(name="cve_id")
+	
 	public CveData getCveData() {
 		return cveData;
 	}

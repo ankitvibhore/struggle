@@ -20,11 +20,14 @@ public class ProblemType implements Serializable {
 	private static final long serialVersionUID = 2868990783558136805L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="problem_id")
 	private int problemId;
 	private String problemDescription;
 	private String problemValue;
+	@ManyToOne
+	@JoinColumn(name="cve_id")
 	private CveData cveData;
-	@Column(name="problem_id")
+	
 	public int getProblemId() {
 		return problemId;
 	}
@@ -45,8 +48,7 @@ public class ProblemType implements Serializable {
 	public void setProblemValue(String problemValue) {
 		this.problemValue = problemValue;
 	}
-	@ManyToOne
-	@JoinColumn(name="cve_id")
+	
 	public CveData getCveData() {
 		return cveData;
 	}

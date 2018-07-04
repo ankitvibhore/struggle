@@ -20,25 +20,28 @@ public class VendorProduct implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String versionId;
-	private String versionName;
-	private CveVendor cveVendor;
 	@Column(name="version_id")
+	private String versionId;
+	@Column(name="version_name")
+	private String versionName;
+	@ManyToOne
+	@JoinColumn(name="id")
+	private CveVendor cveVendor;
+	
 	public String getVersionId() {
 		return versionId;
 	}
 	public void setVersionId(String versionId) {
 		this.versionId = versionId;
 	}
-	@Column(name="version_name")
+	
 	public String getVersionName() {
 		return versionName;
 	}
 	public void setVersionName(String versionName) {
 		this.versionName = versionName;
 	}
-	@ManyToOne
-	@JoinColumn(name="vendor_id")
+	
 	public CveVendor getCveVendor() {
 		return cveVendor;
 	}

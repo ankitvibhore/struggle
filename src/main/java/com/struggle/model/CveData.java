@@ -27,9 +27,19 @@ public class CveData implements Serializable {
 	private String cveId;
 	@Column(name="assigner")
 	private String assigner;
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,targetEntity=CveVendor.class)
+//	@JoinTable(name = "cve_data_vendor", joinColumns = { @JoinColumn(name = "cve_id") }, inverseJoinColumns = { @JoinColumn(name = "vendor_id") })
+	@JoinTable(name="cve_vendor",joinColumns=@JoinColumn(name="cve_id"),inverseJoinColumns=@JoinColumn(name="vendor_id"))
 	private Set<CveVendor> cveVendor;
+	@OneToMany(fetch=FetchType.LAZY)
+//	@JoinTable(name="problem_type",joinColumns=@JoinColumn(name="problem_id"))
+	@JoinTable(name = "problem_type", joinColumns = { @JoinColumn(name = "cve_id") }, inverseJoinColumns = { @JoinColumn(name = "problem_id") })
     private Set<ProblemType> problemType;
+	@OneToMany(fetch=FetchType.LAZY)
+	@JoinTable(name = "description", joinColumns = { @JoinColumn(name = "cve_id") }, inverseJoinColumns = { @JoinColumn(name = "description_id") })
     private Set<Description> description;
+	@OneToMany(fetch=FetchType.LAZY)
+	@JoinTable(name = "references", joinColumns = { @JoinColumn(name = "cve_id") }, inverseJoinColumns = { @JoinColumn(name = "reference_id") })
     private Set<References> references;
     @Column(name="published_date")
     private String publishedDate;
@@ -50,32 +60,28 @@ public class CveData implements Serializable {
 	public void setAssigner(String assigner) {
 		this.assigner = assigner;
 	}
-	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,targetEntity=CveVendor.class,mappedBy="cveData")
-	@JoinTable(name = "cve_data_vendor", joinColumns = { @JoinColumn(name = "cve_id") }, inverseJoinColumns = { @JoinColumn(name = "vendor_id") })
+	
 	public Set<CveVendor> getCveVendor() {
 		return cveVendor;
 	}
 	public void setVendor(Set<CveVendor> cveVendor) {
 		this.cveVendor = cveVendor;
 	}
-	@OneToMany(fetch=FetchType.LAZY)
-	@JoinTable(name="problem_type",joinColumns=@JoinColumn(name="problem_id"))
+	
 	public Set<ProblemType> getProblemType() {
 		return problemType;
 	}
 	public void setProblemType(Set<ProblemType> problemType) {
 		this.problemType = problemType;
 	}
-	@OneToMany(fetch=FetchType.LAZY)
-	@JoinTable(name = "cve_data_description", joinColumns = { @JoinColumn(name = "cve_id") }, inverseJoinColumns = { @JoinColumn(name = "description_id") })
+	
 	public Set<Description> getDescription() {
 		return description;
 	}
 	public void setDescription(Set<Description> description) {
 		this.description = description;
 	}
-	@OneToMany(fetch=FetchType.LAZY)
-	@JoinTable(name = "cve_data_reference", joinColumns = { @JoinColumn(name = "cve_id") }, inverseJoinColumns = { @JoinColumn(name = "reference_id") })
+	
 	public Set<References> getReferences() {
 		return references;
 	}

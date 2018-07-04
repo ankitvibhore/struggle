@@ -20,12 +20,15 @@ public class References implements Serializable {
 	private static final long serialVersionUID = -3111703817442686352L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="reference_id")
 	private int referenceId;
 	private String url;
 	private String name;
 	private String refSource;
+	@ManyToOne
+	@JoinColumn(name="cve_id")
 	private CveData cveDate;
-	@Column(name="reference_id")
+	
 	public int getReferenceId() {
 		return referenceId;
 	}
@@ -50,8 +53,7 @@ public class References implements Serializable {
 	public void setRefSource(String refSource) {
 		this.refSource = refSource;
 	}
-	@ManyToOne
-	@JoinColumn(name="cve_id")
+	
 	public CveData getCveDate() {
 		return cveDate;
 	}
