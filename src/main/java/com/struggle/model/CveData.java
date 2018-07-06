@@ -27,7 +27,7 @@ public class CveData implements Serializable {
 	private String cveId;
 	@Column(name="assigner")
 	private String assigner;
-	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,targetEntity=CveVendor.class)
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="cveVendor")
 //	@JoinTable(name = "cve_data_vendor", joinColumns = { @JoinColumn(name = "cve_id") }, inverseJoinColumns = { @JoinColumn(name = "vendor_id") })
 	@JoinTable(name="cve_vendor",joinColumns=@JoinColumn(name="cve_id"),inverseJoinColumns=@JoinColumn(name="vendor_id"))
 	private Set<CveVendor> cveVendor;

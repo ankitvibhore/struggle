@@ -13,7 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
+//import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 @Entity
 @Table(name="cve_vendor")
@@ -29,8 +29,8 @@ public class CveVendor implements Serializable {
 	@Column(name="vendor_id")
 	private String vendorId;
 	private String vendorName;
-	@ManyToOne
-	@JoinColumn(name="cve_id")
+	@ManyToOne()
+//	@JoinColumn(name="cve_id")
 	private CveData cveData;
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,targetEntity=VendorProduct.class)
 //	@JoinTable(name="vendor_product_versions",joinColumns=@JoinColumn(name="vendor_id"),inverseJoinColumns=@JoinColumn(name="version_id"))
@@ -59,15 +59,12 @@ public class CveVendor implements Serializable {
 	public void setVendorProducts(Set<VendorProduct> vendorProducts) {
 		this.vendorProducts = vendorProducts;
 	}
-	
+	 
 	public CveData getCveData() {
 		return cveData;
 	}
 	public void setCveData(CveData cveData) {
 		this.cveData = cveData;
-	}
-	
-
-	
+	}	
 
 }
