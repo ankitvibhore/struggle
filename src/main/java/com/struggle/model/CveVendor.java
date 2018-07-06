@@ -29,7 +29,7 @@ public class CveVendor implements Serializable {
 	@Column(name="vendor_id")
 	private String vendorId;
 	private String vendorName;
-	@ManyToOne()
+	@ManyToOne
 //	@JoinColumn(name="cve_id")
 	private CveData cveData;
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,targetEntity=VendorProduct.class)
