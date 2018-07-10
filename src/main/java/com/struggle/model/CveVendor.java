@@ -30,11 +30,11 @@ public class CveVendor implements Serializable {
 	private String vendorId;
 	private String vendorName;
 	@ManyToOne
-//	@JoinColumn(name="cve_id")
+	@JoinColumn(name="cve_id")
 	private CveData cveData;
-	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,targetEntity=VendorProduct.class)
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="cveVendor")
 //	@JoinTable(name="vendor_product_versions",joinColumns=@JoinColumn(name="vendor_id"),inverseJoinColumns=@JoinColumn(name="version_id"))
-	@JoinTable(name = "vendor_product", joinColumns = { @JoinColumn(name = "vendor_id") }, inverseJoinColumns = { @JoinColumn(name = "version_id") })
+//	@JoinTable(name = "vendor_product", joinColumns = { @JoinColumn(name = "vendor_id") }, inverseJoinColumns = { @JoinColumn(name = "version_id") })
 	private Set<VendorProduct> vendorProducts;
 	
 	

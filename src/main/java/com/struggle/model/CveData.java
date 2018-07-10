@@ -8,8 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
+
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -27,19 +26,19 @@ public class CveData implements Serializable {
 	private String cveId;
 	@Column(name="assigner")
 	private String assigner;
-	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="cveData")
 //	@JoinTable(name = "cve_data_vendor", joinColumns = { @JoinColumn(name = "cve_id") }, inverseJoinColumns = { @JoinColumn(name = "vendor_id") })
-	@JoinTable(name="cve_vendor",joinColumns=@JoinColumn(name="cve_id"),inverseJoinColumns=@JoinColumn(name="vendor_id"))
+//	@JoinTable(name="cve_vendor",joinColumns=@JoinColumn(name="cve_id"),inverseJoinColumns=@JoinColumn(name="vendor_id"))
 	private Set<CveVendor> cveVendor;
-	@OneToMany(fetch=FetchType.LAZY)
+	@OneToMany(fetch=FetchType.LAZY,mappedBy="cveData")
 //	@JoinTable(name="problem_type",joinColumns=@JoinColumn(name="problem_id"))
-	@JoinTable(name = "problem_type", joinColumns = { @JoinColumn(name = "cve_id") }, inverseJoinColumns = { @JoinColumn(name = "problem_id") })
+//	@JoinTable(name = "problem_type", joinColumns = { @JoinColumn(name = "cve_id") }, inverseJoinColumns = { @JoinColumn(name = "problem_id") })
     private Set<ProblemType> problemType;
-	@OneToMany(fetch=FetchType.LAZY)
-	@JoinTable(name = "description", joinColumns = { @JoinColumn(name = "cve_id") }, inverseJoinColumns = { @JoinColumn(name = "description_id") })
+	@OneToMany(fetch=FetchType.LAZY,mappedBy="cveData")
+//	@JoinTable(name = "description", joinColumns = { @JoinColumn(name = "cve_id") }, inverseJoinColumns = { @JoinColumn(name = "description_id") })
     private Set<Description> description;
-	@OneToMany(fetch=FetchType.LAZY)
-	@JoinTable(name = "references", joinColumns = { @JoinColumn(name = "cve_id") }, inverseJoinColumns = { @JoinColumn(name = "reference_id") })
+	@OneToMany(fetch=FetchType.LAZY,mappedBy="cveData")
+//	@JoinTable(name = "references", joinColumns = { @JoinColumn(name = "cve_id") }, inverseJoinColumns = { @JoinColumn(name = "reference_id") })
     private Set<References> references;
     @Column(name="published_date")
     private String publishedDate;

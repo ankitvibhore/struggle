@@ -27,7 +27,7 @@ public class References implements Serializable {
 	private String refSource;
 	@ManyToOne
 	@JoinColumn(name="cve_id")
-	private CveData cveDate;
+	private CveData cveData;
 	
 	public int getReferenceId() {
 		return referenceId;
@@ -54,11 +54,11 @@ public class References implements Serializable {
 		this.refSource = refSource;
 	}
 	
-	public CveData getCveDate() {
-		return cveDate;
+	public CveData getCveData() {
+		return cveData;
 	}
-	public void setCveDate(CveData cveDate) {
-		this.cveDate = cveDate;
+	public void setCveDate(CveData cveData) {
+		this.cveData = cveData;
 	}
 	
 

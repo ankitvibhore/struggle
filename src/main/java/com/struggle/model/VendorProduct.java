@@ -25,7 +25,7 @@ public class VendorProduct implements Serializable {
 	@Column(name="version_name")
 	private String versionName;
 	@ManyToOne
-	@JoinColumn(name="id")
+	@JoinColumn(name="vendor_id")
 	private CveVendor cveVendor;
 	
 	public String getVersionId() {
