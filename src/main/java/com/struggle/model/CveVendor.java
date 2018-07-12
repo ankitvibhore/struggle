@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 //import javax.persistence.PrimaryKeyJoinColumn;
@@ -28,7 +27,7 @@ public class CveVendor implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="vendor_id")
 	private String vendorId;
-	private String vendorName;
+	private String vendor_name;
 	@ManyToOne
 	@JoinColumn(name="cve_id")
 	private CveData cveData;
@@ -46,11 +45,11 @@ public class CveVendor implements Serializable {
 		this.vendorId = vendorId;
 	}
     @Column(name="vendor_name")
-	public String getVendorName() {
-		return vendorName;
+	public String getVendor_Name() {
+		return vendor_name;
 	}
-	public void setVendorName(String vendorName) {
-		this.vendorName = vendorName;
+	public void setVendor_Name(String vendor_name) {
+		this.vendor_name = vendor_name;
 	}
 	
 	public Set<VendorProduct> getVendorProducts() {

@@ -23,9 +23,9 @@ public class CveData implements Serializable {
 	private static final long serialVersionUID = 2189408149153247877L;
 	@Id
 	@Column(name="cve_id")
-	private String cveId;
+	private String ID;
 	@Column(name="assigner")
-	private String assigner;
+	private String ASSIGNER;
 	@OneToMany(fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="cveData")
 //	@JoinTable(name = "cve_data_vendor", joinColumns = { @JoinColumn(name = "cve_id") }, inverseJoinColumns = { @JoinColumn(name = "vendor_id") })
 //	@JoinTable(name="cve_vendor",joinColumns=@JoinColumn(name="cve_id"),inverseJoinColumns=@JoinColumn(name="vendor_id"))
@@ -46,18 +46,18 @@ public class CveData implements Serializable {
     private String lastModifiedDate;
 	
 	
-	public String getCveId() {
-		return cveId;
+	public String getID() {
+		return ID;
 	}
-	public void setCveId(String cveId) {
-		this.cveId = cveId;
+	public void setID(String ID) {
+		this.ID = ID;
 	}
 	
 	public String getAssigner() {
-		return assigner;
+		return ASSIGNER;
 	}
-	public void setAssigner(String assigner) {
-		this.assigner = assigner;
+	public void setAssigner(String ASSIGNER) {
+		this.ASSIGNER = ASSIGNER;
 	}
 	
 	public Set<CveVendor> getCveVendor() {
